@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <title>Gallery</title>
+</head>
+<body>
+    <div id="container">
+        <header>
+            <div class="keys">
+                <input type="button" id="back" value="&#129060">
+            </div>
+            <div class="keys" id="select">
+                <form id="moduloweb" name="square" method="post">
+                    <select class="select" name="manga" id="scegli">
+                        <option class="selection" id="first_selection" selected disabled>Seleziona il manga</option>
+                        <option class="selection" value="0">Tsubasa RESERVoir CHRoNiCLE</option>
+                        <option class="selection" value="1">xxxHOLIC</option>
+                        <option class="selection" value="2">Fullmetal Alchemist</option>
+                        <option class="selection" value="3">Hunter X Hunter</option>
+                        <option class="selection" value="4">One Piece</option>
+                        <option class="selection" value="5">Naruto</option>
+                        <option class="selection" value="6">Death Note</option>
+                        <option class="selection" value="7">L'Attacco dei Giganti</option>
+                        <option class="selection" value="8">Berserk</option>
+                        <option class="selection" value="9">Dragon Ball Z</option>
+                    </select>
+                </form>
+            </div>
+            <div class="keys">
+                <input type="button" id="ahead" value="&#129062"> 
+            </div>
+        </header>
+        <main>
+            <div id="image">
+            </div>
+        </main>
+    </div>
+
+    <script>
+        let foto;
+
+        let images = ["https://upload.wikimedia.org/wikipedia/it/a/a1/Reservmanga.jpg","https://1.bp.blogspot.com/-t6FuKDFw0mA/Tm88cRdmOkI/AAAAAAAACy4/dgF8BJI0PhM/w1200-h630-p-k-no-nu/xxxholic.jpg","https://upload.wikimedia.org/wikipedia/it/1/1f/Fma01.jpg","https://mangayo.it/163-full_default/hunter-x-hunter-1-edizione-giapponese.jpg","https://lupiteam.net/storage/comics/one-piece_1UYTZoYWv1EWUSvp/one-piece.jpg","https://upload.wikimedia.org/wikipedia/it/3/3e/Naruto1.jpg","https://upload.wikimedia.org/wikipedia/it/thumb/0/08/Death_Note_volume_01.jpg/640px-Death_Note_volume_01.jpg","https://upload.wikimedia.org/wikipedia/it/4/4d/L%27attacco_dei_giganti_copertina.jpeg","https://lupiteam.net/storage/comics/berserk_xmjL8ZGFoebXU453/berserk.jpg","https://m.media-amazon.com/images/I/81Dy6cNM7yL.jpg"]
+
+        document.getElementById("scegli").addEventListener("change", visualizza); // l'evento per i select è change, non click!!!
+
+        function visualizza() {
+            foto = document.square.manga.value;
+
+            document.getElementById("image").innerHTML = "<img src = '" + images[foto] + "' />";
+            document.getElementById("image").style.display = "flex";
+        }
+
+        document.getElementById("ahead").addEventListener("click", forward);
+
+        function forward() {
+            if (foto < images.length-1) {
+                document.square.manga.value = ++foto;
+            } else {
+                document.square.manga.value = 0;
+            }
+
+            visualizza();
+        }
+
+        document.getElementById("back").addEventListener("click", backward);
+
+        function backward() {
+            if (foto > 0) {
+                document.square.manga.value = --foto;
+            } else {
+                document.square.manga.value = 9;
+            }
+
+            visualizza();
+        }
+
+    </script>
+</body>
+</html>
